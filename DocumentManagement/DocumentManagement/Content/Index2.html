@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Terrace skin</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Content/skins/terrace/dhtmlx.css" />
+    <!--<link rel="stylesheet" type="text/css" href="../Scripts/codebase/dhtmlx.css" />-->
+    <script src="../Scripts/codebase/tree.js"></script>
+    <script>
+
+
+        var myTree;
+        var jsonData;
+        var js;
+        var json = { "id": 0, "item": [{ "id": 1, "text": "Head department", "item": [{ "id": 1, "text": "Anton" }, { "id": 2, "text": "Sergiy" }, { "id": 3, "text": "Aleksiy" }, { "id": 4, "text": "Pavlo" }, { "id": 5, "text": "Petro" }, { "id": 6, "text": "Nikolay" }, { "id": 7, "text": "Artur" }, { "id": 8, "text": "Arkadiy" }, { "id": 9, "text": "Daniil" }] }] };
+
+       (function () {
+
+            $.get('http://localhost:38013/Employee/GetTree', function (data) {
+                js = data;                             
+               doOnLoad(js);
+            });
+
+        })();
+
+       function doOnLoad(js) {
+            myTree = new dhtmlXTreeObject("treeboxbox_tree", "100%", "100%", 0);
+            myTree.setImagePath("../Content/skins/terrace/imgs/dhxtree_terrace/");
+        //    myTree.setImagePath("../Scripts/codebase/imgs/dhxtree_skyblue/");
+            //myTree.setXMLAutoLoading("../Content/tree.json");
+            //myTree.setDataMode("json");
+            //load first level of tree
+            //myTree.load("../Content/tree.json", "json");
+             myTree.enableDragAndDrop(true);
+       //    myTree.setLockedIcons("lock.gif", "lock.gif", "lock.gif");
+          //    myTree.load("../Content/tree.xml");
+          //  myTree.enableSmartXMLParsing(true);
+       //     myTree.load("../Content/data.json", "json");
+            
+            //myTree.enableSmartXMLParsing(true);
+            //myTree.load("../common/big_data.json", "json");
+
+             jsonData = new Object();
+             jsonData.id = 0;
+             jsonData.item = js;
+             console.log(jsonData);
+             myTree.parse(jsonData, "json");
+             myTree.setLocked
+        }
+
+    </script>
+</head>
+<body onload="doOnLoad()">
+    <h1>Terrace skin</h1>
+    <table>
+        <tr>
+            <td>
+                <div id="treeboxbox_tree" style="width:250px; height:718px; background-color:#f5f5f5;border :1px solid Silver; overflow:hidden; "></div>
+            </td>
+            <td rowspan="2" style="padding-left:25" valign="top">
+                <div><a href="javascript:void(0)" onclick="myTree.lockTree(true);">Lock tree</a></div>
+                <div><a href="javascript:void(0)" onclick="myTree.lockTree(false);">UnLock tree</a></div>
+                <div><a href="javascript:void(0)" onclick="myTree.lockItem(myTree.getSelectedItemId(),true)">Lock item</a></div>
+                <div><a href="javascript:void(0)" onclick="myTree.lockItem(myTree.getSelectedItemId(),false)">UnLock item</a></div>
+                <div><a href="javascript:void(0)" onclick="alert(myTree.isLocked(myTree.getSelectedItemId()))">Get lock state</a></div>
+            </td>
+        </tr>
+    </table>
+    <div id="out_zone"></div>
+</body>
+</html>

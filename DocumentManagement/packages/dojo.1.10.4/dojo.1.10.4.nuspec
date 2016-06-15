@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dojo</id>
+    <version>1.10.4</version>
+    <title>dojo</title>
+    <authors>the dojo foundation</authors>
+    <owners>the dojo foundation</owners>
+    <licenseUrl>http://dojotoolkit.org/license/</licenseUrl>
+    <projectUrl>http://dojotoolkit.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is the basic dojo.js and minified dojo for just the dojo core functionality</description>
+    <summary>Dojo saves you time, delivers powerful performance, and scales with your development process. It's the toolkit experienced developers turn to for building superior desktop and mobile web experiences.</summary>
+    <language>en-US</language>
+    <tags>dojo javascript</tags>
+  </metadata>
+</package>

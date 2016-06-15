@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+    <script>
+        angular.module("app", [
+        ]).controller("radioController", function ($scope, $log) {
+
+            $scope.data = {
+                show: true,
+                hide: false
+            };
+            $scope.$watch('colorValue', function (colorValue) {
+                $log.info(colorValue);
+            });
+        });
+
+
+    </script>
+</head>
+<body ng-init="colorValue = 'blue'" ng-controller="radioController">
+    <label>
+        Red:
+        <input type="radio" ng-model="colorValue" value="red" /><br />
+    </label>
+
+    <label>
+        Green:
+        <input type="radio" ng-model="colorValue" value="green" /><br />
+    </label>
+
+    <label>
+        Blue:
+        <input type="radio" ng-model="colorValue" value="blue" /><br />
+    </label>
+    <br /><strong>Selected color:</strong> {{colorValue}}<br />
+</body>
+
+<div>
+    <div ng-show="data.show"> If true the show otherwise hide. </div>
+    <div ng-hide="!(data.hide)"> If true the show otherwise hide.</div>
+</div>
+</html>

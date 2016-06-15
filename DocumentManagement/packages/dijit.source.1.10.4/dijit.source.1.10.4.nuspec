@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>dijit.source</id>
+    <version>1.10.4</version>
+    <title>dijit Source</title>
+    <authors>the dojo foundation</authors>
+    <owners>the dojo foundation</owners>
+    <licenseUrl>http://dojotoolkit.org/license/</licenseUrl>
+    <projectUrl>http://dojotoolkit.org/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This is the dijit source files package. Dijit is Dojo's UI Library, and lives as a separate namespace dijit. Dijit requires Dojo Core and Dojo Base.
+
+Each of the widgets and functionality provided by Dijit are described http://dojotoolkit.org/reference-guide/1.8/dijit/index.html#dijit-index</description>
+    <summary>Dojo saves you time, delivers powerful performance, and scales with your development process. It's the toolkit experienced developers turn to for building superior desktop and mobile web experiences.</summary>
+    <language>en-US</language>
+    <tags>dojo dijit javascript</tags>
+    <dependencies>
+      <dependency id="dojo.source" version="1.10.4" />
+    </dependencies>
+  </metadata>
+</package>

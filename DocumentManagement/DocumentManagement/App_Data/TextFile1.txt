@@ -1,0 +1,15 @@
+﻿
+
+
+	CREATE TABLE [dbo].[Employees] (
+    [IdEmployee]                INT            IDENTITY (1, 1) NOT NULL,
+    [FirstName]                 NVARCHAR (MAX) NULL,
+    [LastName]                  NVARCHAR (MAX) NOT NULL,
+    [IdDepartment]              INT            NOT NULL,
+    [DepartmentHeadId]          INT            NULL,
+    [ManagerCompany_IdEmployee] INT            NULL,
+    CONSTRAINT [PK_dbo.Employees] PRIMARY KEY CLUSTERED ([IdEmployee] ASC),
+    CONSTRAINT [FK_dbo.Employees_dbo.Departments_IdDepartment] FOREIGN KEY ([IdDepartment]) REFERENCES [dbo].[Departments] ([IdDepartment]) ON DELETE CASCADE,
+    CONSTRAINT [FK_dbo.Employees_dbo.Employees_DepartmentHeadId] FOREIGN KEY ([DepartmentHeadId]) REFERENCES [dbo].[Employees] ([IdEmployee]),
+    CONSTRAINT [FK_dbo.Employees_dbo.Employees_ManagerCompany_IdEmployee] FOREIGN KEY ([ManagerCompany_IdEmployee]) REFERENCES [dbo].[Employees] ([IdEmployee])
+);

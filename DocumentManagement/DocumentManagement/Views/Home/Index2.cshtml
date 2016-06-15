@@ -1,0 +1,111 @@
+﻿
+@{   
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="mymodal" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.4/angular.min.js"></script>
+    <script src="../Scripts/jquery-2.2.2.min.js"></script>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script>
+
+        var mymodal = angular.module('mymodal', []);
+
+        mymodal.controller('MainCtrl', function ($scope) {
+            $scope.email = "hello@abc.com";
+            $scope.showModal = false;
+            $scope.toggleModal = function () {
+                $scope.showModal = !$scope.showModal;
+            };
+            $scope.buttonClicked = function () {
+                alert("hello1");
+                alert($scope.email);
+                alert($scope.client);
+            }
+
+            $scope.clientList = ["300", "600", "900"]
+            $scope.client = $scope.clientList[0];
+            $scope.changeClient = function () {
+                selectedValue = $scope.client;
+                alert(selectedValue);
+            };
+        });
+
+        mymodal.directive('modal', function () {
+            return {
+                template: '<div class="modal fade">' +
+                    '<div class="modal-dialog">' +
+                      '<div class="modal-content">' +
+                        '<div class="modal-header">' +
+                          '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
+                          '<h4 class="modal-title">{{ title }}</h4>' +
+                        '</div>' +
+                        '<div class="modal-body" ng-transclude></div>' +
+                      '</div>' +
+                    '</div>' +
+                  '</div>',
+                restrict: 'E',
+                transclude: true,
+                replace: true,
+                scope: true,
+                link: function postLink(scope, element, attrs) {
+                    scope.title = attrs.title;
+
+                    scope.$watch(attrs.visible, function (value) {
+                        if (value == true)
+                            $(element).modal('show');
+                        else
+                            $(element).modal('hide');
+                    });
+
+                    $(element).on('shown.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.$parent[attrs.visible] = true;
+                        });
+                    });
+
+                    $(element).on('hidden.bs.modal', function () {
+                        scope.$apply(function () {
+                            scope.$parent[attrs.visible] = false;
+                        });
+                    });
+                }
+            };
+        });
+    </script>
+
+</head>
+<body>
+
+    <div ng-controller="MainCtrl" class="container">
+        <h1>Modal example</h1>
+        <button ng-click="toggleModal()" class="btn btn-default">Open modal</button>
+
+        <modal title="Login form" visible="showModal">
+
+            <div>
+                <select ng-model="$parent.client" ng-change="changeClient()" ng-options="item for item in clientList">
+                    <label for="email">Email address</label>
+                    <input type="text" ng-model="$parent.email" id="email" placeholder="Enter email" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Password" />
+            </div>
+            <button type="submit" ng-click="buttonClicked()" class="btn btn-default">Submit</button>
+
+        </modal>
+    </div>
+</body>
+</html>
+
+
+
+
+
+

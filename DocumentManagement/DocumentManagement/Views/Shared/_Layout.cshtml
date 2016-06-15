@@ -1,0 +1,68 @@
+﻿@using Groupdocs.Web.UI.Comparison
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <base href="/">
+    @*@Scripts.Render("~/bundles/modernizr")*@      
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/angular")*@
+  
+    @*<script src="~/Content/Angular.js"></script>
+    <script src="~/Content/angularRoute.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular-resource.min.js"></script>*@
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular-resource.js"></script>
+     <script src="~/Content/Angular/Module.js"></script>
+    <script src="~/Content/Angular/Config.js"></script>
+    <script src="~/Content/Angular/Service.js"></script>
+    <script src="~/Content/Angular/Controller.js"></script>
+    <script src="~/Content/Angular/Directive.js"></script>   
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+    @*<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>*@
+</head>
+<body>
+    <div class="reg">
+        @if (Request.IsAuthenticated)
+{
+    <text>Hello,
+        @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })!
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+        }
+</text>   
+}
+else
+{
+            <ul>
+                <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            </ul>
+        }
+    </div>  
+    <div ng-controller="otherCtrl">
+        <nav class="{{active}}" ng-click="$event.preventDefault()">
+            <a href="/employee" class="home" ng-click="active='home'">Home</a>
+            <a href="/department" class="department" ng-click="active='department'">Department</a>
+            <a href="/emp" class="employees" ng-click="active='employees'">Employees</a>
+            <a href="/document" class="documents" ng-click="active='documents'">Documents</a>
+            <a href="/home" class="company" ng-click="active='company'">Company</a>
+            <a href="/admin" class="admin" ng-click="active='admin'">Admin</a>
+            <div ng-view></div>           
+        </nav>
+    </div>    
+    @RenderBody()
+    @RenderSection("scripts", required: false)
+</body>
+</html>

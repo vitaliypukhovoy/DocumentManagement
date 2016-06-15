@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Companies">
+    <Key>
+      <PropertyRef Name="IdCompany" />
+    </Key>
+    <Property Name="IdCompany" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameCompany" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="IdDepartment" />
+    </Key>
+    <Property Name="IdDepartment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar(max)" />
+    <Property Name="IdCompany" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="IdDocument" />
+    </Key>
+    <Property Name="IdDocument" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocName" Type="nvarchar(max)" />
+    <Property Name="Autor" Type="nvarchar(max)" />
+    <Property Name="DocData" Type="datetime" Nullable="false" />
+    <Property Name="DocCipher" Type="int" Nullable="false" />
+    <Property Name="Department" Type="nvarchar(max)" />
+    <Property Name="Company" Type="nvarchar(max)" />
+    <Property Name="ReferOnHard" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DocumentTypes">
+    <Key>
+      <PropertyRef Name="IdDocType" />
+    </Key>
+    <Property Name="IdDocType" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Incoming" Type="nvarchar(max)" />
+    <Property Name="Outgoing" Type="nvarchar(max)" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeDocuments">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+      <PropertyRef Name="IdDocument" />
+    </Key>
+    <Property Name="IdEmployee" Type="int" Nullable="false" />
+    <Property Name="IdDocument" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+    </Key>
+    <Property Name="IdEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+    <Property Name="FirstName" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IdDepartment" Type="int" Nullable="false" />
+    <Property Name="DepartmentHeadId" Type="int" />
+    <Property Name="ManagerCompanyId" Type="int" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="IdEmployee" />
+    </Key>
+    <Property Name="IdEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="datetime" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_Departments_dbo_Companies_IdCompany">
+    <End Role="Companies" Type="Self.Companies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Companies">
+        <PropertyRef Name="IdCompany" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="IdCompany" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_DocumentTypes_dbo_Documents_IdDocument">
+    <End Role="Documents" Type="Self.Documents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DocumentTypes" Type="Self.DocumentTypes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documents">
+        <PropertyRef Name="IdDocument" />
+      </Principal>
+      <Dependent Role="DocumentTypes">
+        <PropertyRef Name="IdDocument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDocuments_dbo_Documents_IdDocument">
+    <End Role="Documents" Type="Self.Documents" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EmployeeDocuments" Type="Self.EmployeeDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Documents">
+        <PropertyRef Name="IdDocument" />
+      </Principal>
+      <Dependent Role="EmployeeDocuments">
+        <PropertyRef Name="IdDocument" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_EmployeeDocuments_dbo_Employees_IdEmployee">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="EmployeeDocuments" Type="Self.EmployeeDocuments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="EmployeeDocuments">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Departments_IdDepartment">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="IdDepartment" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="IdDepartment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Employees_DepartmentHeadId">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Employees1">
+        <PropertyRef Name="DepartmentHeadId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Employees_ManagerCompanyId">
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employees">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Employees1">
+        <PropertyRef Name="ManagerCompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Employees_dbo_Users_IdEmployee">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="Employees">
+        <PropertyRef Name="IdEmployee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="IdEmployee" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentTypes" EntityType="Self.DocumentTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeDocuments" EntityType="Self.EmployeeDocuments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Departments_dbo_Companies_IdCompany" Association="Self.FK_dbo_Departments_dbo_Companies_IdCompany">
+      <End Role="Companies" EntitySet="Companies" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_DocumentTypes_dbo_Documents_IdDocument" Association="Self.FK_dbo_DocumentTypes_dbo_Documents_IdDocument">
+      <End Role="Documents" EntitySet="Documents" />
+      <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDocuments_dbo_Documents_IdDocument" Association="Self.FK_dbo_EmployeeDocuments_dbo_Documents_IdDocument">
+      <End Role="Documents" EntitySet="Documents" />
+      <End Role="EmployeeDocuments" EntitySet="EmployeeDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_EmployeeDocuments_dbo_Employees_IdEmployee" Association="Self.FK_dbo_EmployeeDocuments_dbo_Employees_IdEmployee">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="EmployeeDocuments" EntitySet="EmployeeDocuments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Departments_IdDepartment" Association="Self.FK_dbo_Employees_dbo_Departments_IdDepartment">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Employees_DepartmentHeadId" Association="Self.FK_dbo_Employees_dbo_Employees_DepartmentHeadId">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Employees1" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Employees_ManagerCompanyId" Association="Self.FK_dbo_Employees_dbo_Employees_ManagerCompanyId">
+      <End Role="Employees" EntitySet="Employees" />
+      <End Role="Employees1" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Employees_dbo_Users_IdEmployee" Association="Self.FK_dbo_Employees_dbo_Users_IdEmployee">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Employees" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

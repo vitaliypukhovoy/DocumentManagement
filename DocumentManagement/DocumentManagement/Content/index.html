@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Dijit Tree with Checkboxes</title>
+
+    <style type="text/css">
+        /*@import "../Scripts/dijit/themes/claro/claro.css";*/
+        /*@import "../themes/claro/claro.css";*/
+    </style>
+
+    <link rel="stylesheet" href="../dijit/themes/claro/claro.css">
+    <script type="text/javascript">
+        var dojoConfig = {
+            async: true,
+            parseOnLoad: true,
+            isDebug: true,
+            baseUrl: "../../",
+            packages: [
+              { name: "dojo", location: "dojo" },
+               { name: "dijit", location: "dijit" },
+        { name: "cbtree", location: "cbtree" }
+            ]
+        };
+    </script>
+
+    <script type="text/javascript" src="../dojo/dojo.js"></script>
+</head>
+
+<body class="claro">
+    <h1 class="DemoTitle">Dijit Tree with Multi State CheckBoxes</h1>
+    <div id="CheckboxTree">
+
+        <script type="text/javascript">
+            require([
+              "dojo/_base/connect",
+              "dojo/data/ItemFileWriteStore",
+   "dojo/domReady",
+   "dijit/Tree",
+   "dijit/tree/ForestStoreModel"
+            ], function (connect, ItemFileWriteStore, domReady, Tree, ForestStoreModel) {
+                function checkBoxClicked(item, nodeWidget, evt) {
+                    alert("The new state for " + this.getLabel(item) + " is: " + nodeWidget.get("checked"));
+                }
+                var store = new ItemFileWriteStore({
+                    url: {
+                        "employees": [
+                        { "firstName": "John", "lastName": "Doe" },
+          { "firstName": "Anna", "lastName": "Smith" },
+          { "firstName": "Peter", "lastName": "Jones" }
+                        ]
+                    }
+                });
+                var model = new ForestStoreModel({
+                    store: store,
+                    query: { type: 'parent' },
+                    rootLabel: 'The Family'
+                });
+                var tree = new Tree({
+                    model: model,
+                    id: "MenuTree",
+                    branchIcons: true,
+                    branchReadOnly: false,
+                    checkBoxes: true,
+                    nodeIcons: true
+                });
+                connect.connect(tree, "onCheckBoxClick", model, checkBoxClicked);
+                domReady(function () {
+                    tree.placeAt('CheckboxTree');
+                });
+            });
+        </script>
+
+    </div>
+    <h2>Click a checkbox</h2>
+
+</body>
+
+</html>
+
+    <!--<!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Document managment</title>
+        <link rel="stylesheet" href="../Scripts/dijit/themes/claro/claro.css">
+
+        <script>dojoConfig = { parseOnLoad: true }</script>
+        <script src='../Scripts/dojo.js'></script>
+
+        <script>
+
+            dojo.require("dojo.data.ItemFileReadStore");
+            dojo.require("dijit.Tree");
+
+            var rawdata = [{
+                label: 'Something <b>important</b>',
+                id: '1',
+                children: [{ label: 'Life', id: '1.1' }, { label: 'Liberty', id: '1.2' }]
+            }, {
+                label: 'Some links (note: the link is <b>not</b> clickable)',
+                id: '2',
+                children: [
+                    { id: '2.1', label: '<a href="http://dojotoolkit.org">Dojo Toolkit</a>' },
+                    { id: '2.2', label: '<img src="http://dojofoundation.org/media/img/dojo.logo.png" alt="greatest ever" height="32px" />' },
+                    { id: '2.3', label: '<a href="http://blog.nqzero.com">my blog</a>' }
+                ]
+            }];
+
+            function prepare() {
+                var store = new dojo.data.ItemFileReadStore({
+                    data: { identifier: 'id', label: 'label', items: rawdata }
+                });
+                var treeModel = new dijit.tree.ForestStoreModel({ store: store });
+                var treeControl = new dijit.Tree({
+                    model: treeModel,
+                    showRoot: false,
+                    _createTreeNode: function (/*Object*/ args) {
+                        var tnode = new dijit._TreeNode(args);
+                        tnode.labelNode.innerHTML = args.label;
+                        return tnode;
+                    }
+                }, "treeOne");
+            }
+
+            dojo.ready(prepare);
+        </script>
+    </head>
+    <body class="claro">
+        <div id="treeOne"></div>
+        <div>111</div>
+    </body>
+</html>-->

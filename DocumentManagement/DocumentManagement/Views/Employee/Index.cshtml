@@ -1,0 +1,112 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .box {
+        white-space: nowrap;
+    }
+       
+    
+    #treeboxbox_tree {
+      
+        padding: 10px;
+    }
+   
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="../Scripts/codebase/dhtmlx.css" />
+<script src="../Scripts/codebase/tree.js"></script>
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="panel panel-primary" style="width: 250px; height: 718px;">
+            <div class="panel-heading">Tree employees </div>
+            <div id="treeboxbox_tree" style=" height: 680px; background-color: #f5f5f5; border: 1px solid Silver; overflow: hidden; "></div>
+        </div>
+    </div>
+<div class="col-md-10">
+    <div class="panel panel-primary" style="height:718px">
+        <div class="panel-heading">Documents emloyees</div>
+        <div class="panel-body" style="height: 675px; background-color: #f5f5f5; ">     
+            <div id="doc" style="position: absolute; float:left;">
+                <form action="@Url.Action("Upload")" method="post" enctype="multipart/form-data">
+                    <input type="file"
+                           style="visibility:hidden; width: 1px;"
+                           id='${multipartFilePath}' name='file'
+                           onchange="$(this).parent().find('span').html($(this).val().replace('C:\\fakepath\\', ''))" /> <!-- Chrome security returns 'C:\fakepath\'  -->
+                    <input class="btn btn-primary" type="button" value="Upload File.." onclick="$(this).parent().find('input[type=file]').click();" /> <!-- on button click fire the file click event -->
+                    &nbsp;
+                    <button  class="btn btn_clearformat" type="submit"><img src="..\Content\docs.png" /></button>
+                </form>
+            </div>           
+           
+        </div>        
+    </div>
+</div>
+</div>
+
+
+<script>
+      
+    var myTree;
+    var jsonData;
+    $(document).ready(function () {
+        $.get('/Employee/GetTree', function (data) {
+            js = data;
+            treeFunction(js);
+        });       
+    });
+
+
+    function treeFunction(js) {
+        myTree = new dhtmlXTreeObject("treeboxbox_tree", "100%", "100%", 0);
+            myTree.setImagePath("../Scripts/codebase/imgs/dhxtree_skyblue/");
+        myTree.setLockedIcons("lock.gif", "lock.gif", "lock.gif");      
+        myTree.setOnClickHandler(ClickMe);
+        jsonData = new Object();
+        jsonData.id = 0;
+        jsonData.item = js;
+        console.log(jsonData);
+        myTree.parse(jsonData, "json")
+    };
+
+    function ClickMe(id) {
+        ClearDocs();
+        $.ajax({
+            type: 'get',
+            datatype: 'application/json',
+            url: '/Employee/GetDocument/' + id,
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    var _item = item.ReferOnHard;
+                    var m = _item.match(/.\w{3,4}$/g);
+
+                    if (m == ".docx" || m == ".doc") {
+                        $('<a href=/Employee/GetDocumentId/' + item.IdDocument + ' name=' + item.IdDocument + ' class="size" style="float:left"> <img src="../Content/word.png"> </a>').appendTo('#doc');
+                    }
+                    else if (m == ".pdf") {
+                        $('<a href=/Employee/GetDocumentId/' + item.IdDocument + ' name=' + item.IdDocument + ' class="size" style="float:left"> <img src="../Content/pdf.png"> </a>').appendTo('#doc');
+                    }
+                    else if (m == ".xls" || m == ".xlsx") {
+                        $('<a href=/Employee/GetDocumentId/' + item.IdDocument + '  name=' + item.IdDocument + ' class="size" style="float:left"> <img src="../Content/xls.png"> </a>').appendTo('#doc');
+                    }
+                    else if (m == ".jpg" || m == ".jpeg") {
+                        $('<a href=/Employee/GetDocumentId/' + item.IdDocument + ' name=' + item.IdDocument + '  class="size" style="float:left"> <img src="../Content/docs.png"> </a>').appendTo('#doc');
+                    }
+                    else if (m == ".pptx" || m == ".ppt") {
+                        $('<a href=/Employee/GetDocumentId/' + item.IdDocument + ' name=' + item.IdDocument + ' class="size" style="float:left"> <img src="../Content/ppt.png"> </a>').appendTo('#doc');
+                    }
+                })
+            }
+        });       
+    }
+
+    function ClearDocs() {
+        $('.size').remove();
+    }      
+    </script>
+
+
+

@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E0DD910A-F4DA-4C3C-8C33-CD422CD6408E}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DocumentManagement</RootNamespace>
+    <AssemblyName>DocumentManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxMin">
+      <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.1.12097\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.1.12097\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.1.12097\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.1.12097\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.1.12097\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.1.12097\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="GroupDocs.Comparison, Version=3.0.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\GroupDocs.Comparison.dll</HintPath>
+    </Reference>
+    <Reference Include="Groupdocs.Web.UI.Comparison, Version=2.4.0.0, Culture=neutral, PublicKeyToken=c9073b8a6a9c78c8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Groupdocs.Web.UI.Comparison.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.2.0.0\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.3\lib\net45\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.2.3\lib\net45\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\SimpleMembershipAdministration\Controllers\MainController.cs" />
+    <Compile Include="Areas\SimpleMembershipAdministration\SimpleMembershipAdministrationAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
+    <Compile Include="Controllers\EmpController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TreeController.cs" />
+    <Compile Include="DAL\IRepository.cs" />
+    <Compile Include="DAL\Repository.cs" />
+    <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="Filters\InitilizeMembershipAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\ContextDB.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\DocumentType.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\EmployeeDocument.cs" />
+    <Compile Include="Models\Initialize.cs" />
+    <Compile Include="Models\LocalPasswordModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RegisterModel.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Documents.mdf" />
+    <Content Include="App_Data\Documents_log.ldf">
+      <DependentUpon>Documents.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\TextFile1.txt" />
+    <Content Include="App_Data\Upload\text1.txt" />
+    <Content Include="Content\angular.js" />
+    <Content Include="Content\Angular\Config.js" />
+    <Content Include="Content\Angular\Directive.js" />
+    <Content Include="Content\docs.png" />
+    <Content Include="Content\Angular\Controller.js" />
+    <Content Include="Content\Angular\Module.js" />
+    <Content Include="Content\Angular\Service.js" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\cat.png" />
+    <Content Include="Content\Index4.html" />
+    <Content Include="Content\HtmlPage1.html" />
+    <Content Include="Content\img\base.gif" />
+    <Content Include="Content\img\cd.gif" />
+    <Content Include="Content\img\empty.gif" />
+    <Content Include="Content\img\folder.gif" />
+    <Content Include="Content\img\folderopen.gif" />
+    <Content Include="Content\img\globe.gif" />
+    <Content Include="Content\img\imgfolder.gif" />
+    <Content Include="Content\img\join.gif" />
+    <Content Include="Content\img\joinbottom.gif" />
+    <Content Include="Content\img\line.gif" />
+    <Content Include="Content\img\minus.gif" />
+    <Content Include="Content\img\minusbottom.gif" />
+    <Content Include="Content\img\musicfolder.gif" />
+    <Content Include="Content\img\nolines_minus.gif" />
+    <Content Include="Content\img\nolines_plus.gif" />
+    <Content Include="Content\img\page.gif" />
+    <Content Include="Content\img\plus.gif" />
+    <Content Include="Content\img\plusbottom.gif" />
+    <Content Include="Content\img\question.gif" />
+    <Content Include="Content\img\trash.gif" />
+    <Content Include="Content\index3.html" />
+    <Content Include="Content\Index5.html" />
+    <Content Include="Content\pdf.png" />
+    <Content Include="Content\ppt.png" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\word.png" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_arrow_down.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_arrow_down_dis.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_arrow_up.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_arrow_up_dis.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_chrd.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_loader.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxmenu_terrace\dhxmenu_subar.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\blank.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\but_cut.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\folderClosed.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\folderOpen.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\iconCheckAll.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\iconCheckDis.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\iconCheckGray.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\iconUncheckAll.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\iconUncheckDis.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\leaf.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line1.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line1_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line2.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line2_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line3.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line3_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line4.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\line4_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\lock.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus1.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus2.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus2_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus3.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus3_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus4.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus4_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus5.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\minus5_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus1.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus2.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus2_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus3.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus3_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus4.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus4_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus5.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\plus5_rtl.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\radio_off.gif" />
+    <Content Include="Content\skins\terrace\imgs\dhxtree_terrace\radio_on.gif" />
+    <Content Include="Content\Index2.html" />
+    <Content Include="Content\access.png" />
+    <Content Include="Content\xls.png" />
+    <Content Include="Content\visio.png" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\tree.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\index.html" />
+    <Content Include="HtmlPage1.html" />
+    <Content Include="Content\skins\terrace\dhtmlx.css" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\codebase\dhtmlx.css" />
+    <Content Include="Scripts\codebase\dhtmlx.js" />
+    <Content Include="Scripts\codebase\dhtmlxtree.js" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\blank.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\but_cut.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\folderClosed.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\folderOpen.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\iconCheckAll.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\iconCheckDis.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\iconCheckGray.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\iconUncheckAll.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\iconUncheckDis.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\leaf.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line1.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line1_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line2.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line2_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line3.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line3_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line4.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\line4_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\lock.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus1.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus2.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus2_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus3.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus3_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus4.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus4_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus5.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\minus5_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus1.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus2.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus2_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus3.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus3_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus4.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus4_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus5.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\plus5_rtl.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\radio_off.gif" />
+    <Content Include="Scripts\codebase\imgs\dhxtree_skyblue\radio_on.gif" />
+    <Content Include="Scripts\codebase\tree.js" />
+    <Content Include="Scripts\codebase\tree1.js" />
+    <Content Include="Content\tree.json" />
+    <Content Include="Content\angularRoute.js" />
+    <Content Include="Areas\SimpleMembershipAdministration\Views\Web.config" />
+    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Users.cshtml" />
+    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Roles.cshtml" />
+    <Content Include="Areas\SimpleMembershipAdministration\Views\Main\Index.cshtml" />
+    <Content Include="Areas\SimpleMembershipAdministration\Views\_ViewStart.cshtml" />
+    <None Include="Scripts\jquery-2.2.2.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.2.js" />
+    <Content Include="Scripts\jquery-2.2.2.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery-2.2.2.min.map" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\GetDocumentId.cshtml" />
+    <Content Include="Views\Employee\test.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Emp\Index.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>38414</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:38013/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="SelfHostServer">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:38013/" workingDir="" />
+          </servers>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

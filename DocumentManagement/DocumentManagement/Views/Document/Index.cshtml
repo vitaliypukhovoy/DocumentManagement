@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Document";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="Document" ng-app="app">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading" style="font: bold 28px'Helvetica Neue', Sans-Serif;
+         text-transform: uppercase;
+             /*background-color: #eee;*/
+             color:white;">Employees List</div>
+                <table class="table table-boarder table-hover">
+                    <tr>
+                        <td><b>Id</b></td>
+                        <td><b>FirstName</b></td>
+                        <td><b>LastName</b></td>
+                        <td><b>DepartmentHead</b></td>
+                        <td><b>ManagerCompany</b></td>
+                        <td><b>Department</b></td>
+                    </tr>
+                    <tr ng-repeat="doc in documents">
+                        <td>{{doc.IdDocument}}</td>
+                        <td>{{doc.DocName}}</td>
+                        <td>{{doc.Autor}}</td>
+                        <td>{{doc.DocData}}</td>
+                        <td>{{doc.DocCipher}}</td>
+                        <td>{{doc.Department}}</td>
+                        <td>{{doc.Company}}</td>
+                        <td>{{doc.MyProperty}}</td>
+                        <td>
+                            <span ng-click="editDocument(doc)" class="btn btn-primary">Edit</span>                           
+                            <span ng-click="deleteDocument(doc)" class="btn btn-danger">Delete</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Add department" ng-click="AddEmployee()" />
+
+    <br />
+    <br />
+
+    <modal title={{Action}} visible="ShowModal">
+        <div class="panel panel-heading"> {{Action}} department </div>
+        <input type="hidden" class="form-control" id="Id_Employee" ng-model="$parent.IdDocument" placeholder="Id  Document" />
+        <div class="row">
+            <label class="col-md-3 text-nowrap text-right">FirstName</label>
+            <span class="col-md-6">
+                <input type="text" class="form-control" id="Doc_Name" ng-model="$parent.Doc_Name" placeholder="Doc Name" />
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-3 text-nowrap text-right">LastName</label>
+            <span class="col-md-6">
+                <input type="text" class="form-control" id="Last_Name" ng-model="$parent.Last_Name" placeholder="Last Name" />
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-2 text-nowrap text-right">DepartmentHead</label>
+            <span class="col-md-2">
+                <input type="text" class="form-control" id="DepartmentHead_Id" ng-model="$parent.DepartmentHead_Id" placeholder="Department HeadId" />
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <label class="col-md-2 text-nowrap text-right">ManagerCompany</label>
+            <span class="col-md-2">
+                <input type="text" class="form-control" id="ManagerCompany_ID" ng-model="$parent.ManadgerCompany_ID" placeholder="Manadger Company ID" />
+            </span>
+        </div>
+
+        <div class="row">
+            <label class="col-md-3 text-nowrap text-right">Type</label>
+            <span class="col-md-6">
+                <select class="form-control" ng-model="$parent.selected"
+                        ng-options="dep.value for dep in Departments track by dep.option"></select>
+
+            </span>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <input type="submit" value="Ok" class="btn btn-primary" ng-click="UpdateAddEmployee()" />
+            <input type="submit" value="Cancel" class="btn btn-warning" data-dismiss="modal" />
+        </div>
+    </modal>
+</div>
+
+
+
+

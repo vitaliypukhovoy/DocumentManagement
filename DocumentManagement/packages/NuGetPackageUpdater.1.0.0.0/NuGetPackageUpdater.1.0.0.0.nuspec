@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>NuGetPackageUpdater</id>
+    <version>1.0.0.0</version>
+    <title>NuGetPackageUpdater (Deprecated in NuGet v1.4)</title>
+    <authors>Rob Reynolds</authors>
+    <owners>Rob Reynolds</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Deprecated in NuGet v1.4 -
+NuGetPackageUpdater - global update of a package in a solution or all packages that have updates. This applies a global update of packages to your solution. 
+Every project that is using a package is upgraded to the latest. 
+Please run 'Update-Package' to upgrade all packages to current version. 
+Please run 'Update-Package packageName' to upgrade just one package. 
+| Based on https://gist.github.com/747529 
+| Related to http://nuget.codeplex.com/workitem/913</description>
+    <summary>NuGetPackageUpdater - global update of a package in a solution or all packages that have updates. (Deprecated in NuGet v1.4)</summary>
+    <tags>nuget lib packages folder override update-package</tags>
+  </metadata>
+</package>

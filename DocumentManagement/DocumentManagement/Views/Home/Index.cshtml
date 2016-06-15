@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Companies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div ng-controller="MyControl" ng-app="app">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel panel-heading" style="font: bold 28px'Helvetica Neue', Sans-Serif;
+         text-transform: uppercase;
+             background-color: #eee;
+             color:green;">Companies List</div>
+                <table class="table table-boarder table-hover">
+                    <tr>
+                        <td><b>Id</b></td>
+                        <td><b>Company</b></td>
+                        <td><b>Action</b></td>
+                    </tr>
+                    <tr ng-repeat="company in companies">
+                        <td>{{company.IdCompany}}</td>
+                        <td>{{company.NameCompany}}</td>
+                        <td>
+                            <span ng-click="editCompany(company)" class="btn btn-primary">Edit</span>
+                            <span ng-click="deleteCompany(company)" class="btn btn-danger">Delete</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Add company" ng-click="AddCompany()" />
+
+    <br />
+    <br />
+
+    <modal title={{Action}} visible="ShowModal">
+        <div class="panel panel-heading"> {{Action}} company</div>
+        <div class="row">
+            <label class="col-md-3 text-nowrap text-right">Company</label>
+            <span class="col-md-6">
+                <input type="text" class="form-control" id="Name_Company" ng-model="$parent.Name_Company" placeholder="Name Company" />
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <input type="submit" value="Ok" class="btn btn-primary" ng-click="UpdateAddCompany(company.Name_Company)" />
+            <input type="submit" value="Cancel" class="btn btn-warning" data-dismiss="modal" />
+        </div>
+    </modal>
+
+
+    <modal visible="ShowModal2">
+        <div class="panel-heading"> {{Action2}} </div>
+        <div class="row">
+            <input type="submit" value="Ok" class="btn btn-primary" ng-click="Ok()" />
+        </div>
+    </modal>
+</div>
+
+
+
+

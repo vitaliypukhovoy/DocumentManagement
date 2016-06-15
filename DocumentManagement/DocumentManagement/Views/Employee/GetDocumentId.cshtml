@@ -1,0 +1,30 @@
+﻿@using Groupdocs.Web.UI.Comparison;
+@using Groupdocs.Web.UI.EventHandling;
+@using Groupdocs.Web.UI;
+@{
+  Layout = null;
+}
+<head>
+    @Html.CreateViewerScriptLoadBlock().LoadJquery().LoadJqueryUi()
+</head>
+
+
+<div id="documentContainer"></div>
+
+ @(Html.ViewerClientCode()
+.TargetElementSelector("#documentContainer")
+.Stream(ViewBag.Stream, ViewBag.Filename, ViewBag.Extension, ViewBag.FileDisplayName) // fetch document from a stream
+.EnableRightClickMenu(true)
+.ShowThumbnails(false)
+.OpenThumbnails(false)
+.ShowFolderBrowser(false)
+.ShowDownload(false)
+.ShowViewerStyleControl(false)
+.ShowSearch(false)
+.UsePdfPrinting(false)
+.BackgroundColor("green")
+.Width(960)
+.Height(900)
+.ZoomToFitWidth(true)
+    )
+
